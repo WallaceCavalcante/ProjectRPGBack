@@ -24,6 +24,8 @@ public class Weapon {
     private String rarity;
     @NotNull
     private int level;
+    @NotNull
+    private String type;
 
     public Weapon() {
     }
@@ -66,5 +68,13 @@ public class Weapon {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
