@@ -3,7 +3,11 @@ package com.estudo.rpg.Controller;
 import com.estudo.rpg.Entity.Player;
 import com.estudo.rpg.Entity.Update.LevelUp;
 import com.estudo.rpg.Entity.Update.NewQuestForPlayer;
+import com.estudo.rpg.Functions.Calculate;
+import com.estudo.rpg.Functions.Rewards;
+import com.estudo.rpg.Repository.ArmorRepository;
 import com.estudo.rpg.Repository.PlayerRepository;
+import com.estudo.rpg.Repository.WeaponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +25,15 @@ public class PlayerController {
 
     @Autowired
     PlayerRepository playerRepository;
+
+    @Autowired
+    WeaponRepository weaponRepository;
+
+    @Autowired
+    ArmorRepository armorRepository;
+
+    Calculate calculate = new Calculate();
+    Rewards rewards = new Rewards();
 
     @GetMapping
     public List<Player> getAllPlayersOrASpecific(String classe){
@@ -63,6 +76,9 @@ public class PlayerController {
 
     @PostMapping
     public ResponseEntity<Player> insertPlayer(@RequestBody @Valid Player player, UriComponentsBuilder uriBuilder){
+        player.setHp(calculate.calculatePlayerHp(player.getClasse()));
+        player.setWeapon(weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse())));
+        player.setArmor(armorRepository.getOne(rewards.basicArmorReward()));
         playerRepository.save(player);
         URI uri = uriBuilder.path("/player/{id}").buildAndExpand(player.getId()).toUri();
         System.out.println("Player adicionado com sucesso");

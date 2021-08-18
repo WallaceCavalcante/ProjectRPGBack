@@ -67,8 +67,8 @@ INSERT INTO MONSTER(name, level, weapon_id, armor_id, hp, race, xp_when_killed) 
 INSERT INTO BOSS(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES ('Captain Orc', 15, 6, 5, 50, 'Orc', 150);     --1
 INSERT INTO BOSS(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES ('Goblin King', 30, 7, 6, 1, 'Goblin', 300);   --2
 
-INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp) VALUES('Wace', 1, 9, 'Assassino', 'Masculino', 3, 2, 0);     --1
-INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp) VALUES('GM', 99, 99999999, 'Guerreiro', 'Feminino', 8, 7, 0);--2
+INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp) VALUES('Wace', 1, 9, 'Assassino', 'M', 3, 2, 0);     --1
+INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp) VALUES('GM', 99, 99999999, 'Guerreiro', 'F', 8, 7, 0);--2
 
 INSERT INTO QUEST(name, target, monster_id, completed) VALUES ('The start of your journey', 2, 1, false);
 INSERT INTO QUEST(name, target, monster_id, completed) VALUES ('A little more hard', 2, 2, false);

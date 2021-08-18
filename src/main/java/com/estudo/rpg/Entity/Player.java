@@ -1,5 +1,6 @@
 package com.estudo.rpg.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.Nullable;
 
@@ -14,7 +15,9 @@ import javax.validation.constraints.Null;
 //@ToString(exclude = "invoice")
 //@EqualsAndHashCode(exclude = "invoice")
 //@Data
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Player {
 
     @Id

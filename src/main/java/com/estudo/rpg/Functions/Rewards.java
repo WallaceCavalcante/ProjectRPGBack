@@ -1,11 +1,26 @@
 package com.estudo.rpg.Functions;
 
+import com.estudo.rpg.Entity.Armor;
+import com.estudo.rpg.Entity.Weapon;
+import com.estudo.rpg.Repository.ArmorRepository;
+import com.estudo.rpg.Repository.WeaponRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Rewards {
 
+    @Autowired
+    WeaponRepository weaponRepository;
+
+    @Autowired
+    ArmorRepository armorRepository;
+
     public Rewards() {
+    }
+
+    public long basicArmorReward() {
+        return 2L;
     }
 
     public long basicWeaponReward(String classe) {

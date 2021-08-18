@@ -46,7 +46,6 @@ public class RegisterValidation {
             System.out.println("Numero digitado inválido, por favor, digite 1 para Masculino ou 2 para Feminino");
             gender = sc.nextLine();
         }
-        if (gender.equals("1")) return "Masculino";
-        else return "Feminino";
+        return gender.equals("1") ? "M" : "F";
     }
 }
