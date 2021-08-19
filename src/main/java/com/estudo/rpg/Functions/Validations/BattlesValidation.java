@@ -17,8 +17,8 @@ public class BattlesValidation {
 
     DecimalFormat decimalFormat;
 
-    public BattlesValidation(Loading loading, Calculate calculate) {
-        this.loading = loading;
+
+    public BattlesValidation(Calculate calculate) {
         this.calculate = calculate;
         this.decimalFormat = new DecimalFormat();
     }
@@ -115,6 +115,38 @@ public class BattlesValidation {
             System.out.println("Seu hp restante: " + decimalFormat.format(playerHp));
             System.out.println();
             loading.loading(2000);
+        }
+        if (playerHp <= 0 && opponentHp > 0) {
+            return false;
+        } else if (playerHp > 0 && opponentHp <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean validateKillOpponentNoLoading(Player player, Player opponent) {
+        double playerHp = player.getHp();
+        double playerAttack = (player.getWeapon().getAttack() * calculate.calculatePlayerAttackSpeed(player.getClasse())) - opponent.getArmor().getDefense();
+        double opponentHp = opponent.getHp();
+        double opponentAttack = (opponent.getWeapon().getAttack() * calculate.calculatePlayerAttackSpeed(opponent.getClasse())) - player.getArmor().getDefense();
+        if (playerAttack <= 0) playerAttack = 1;
+        if (opponentAttack <= 0) opponentAttack = 1;
+
+        while (playerHp > 0 && opponentHp > 0) {
+            opponentHp -= playerAttack;
+            System.out.println("Você tirou " + decimalFormat.format(playerAttack) + " de dano");
+            if (opponentHp < 0) opponentHp = 0;
+            System.out.println("Hp restante do oponente " + opponent.getNickname() + ": " + decimalFormat.format(opponentHp));
+            System.out.println();
+            if (opponentHp <= 0) {
+                return true;
+            }
+            playerHp -= opponentAttack;
+            System.out.println("Você recebeu " + decimalFormat.format(opponentAttack) + " de dano");
+            if (playerHp < 0) playerHp = 0;
+            System.out.println("Seu hp restante: " + decimalFormat.format(playerHp));
+            System.out.println();
         }
         if (playerHp <= 0 && opponentHp > 0) {
             return false;

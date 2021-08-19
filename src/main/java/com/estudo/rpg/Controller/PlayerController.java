@@ -5,6 +5,7 @@ import com.estudo.rpg.Entity.Update.LevelUp;
 import com.estudo.rpg.Entity.Update.NewQuestForPlayer;
 import com.estudo.rpg.Functions.Calculate;
 import com.estudo.rpg.Functions.Rewards;
+import com.estudo.rpg.Functions.Validations.BattlesValidation;
 import com.estudo.rpg.Repository.ArmorRepository;
 import com.estudo.rpg.Repository.PlayerRepository;
 import com.estudo.rpg.Repository.WeaponRepository;
@@ -34,6 +35,7 @@ public class PlayerController {
 
     Calculate calculate = new Calculate();
     Rewards rewards = new Rewards();
+    BattlesValidation battlesValidation = new BattlesValidation(calculate);
 
     @GetMapping
     public List<Player> getAllPlayersOrASpecific(String classe){
@@ -74,11 +76,12 @@ public class PlayerController {
         return listPlayer;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Player> insertPlayer(@RequestBody @Valid Player player, UriComponentsBuilder uriBuilder){
         player.setHp(calculate.calculatePlayerHp(player.getClasse()));
         player.setWeapon(weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse())));
         player.setArmor(armorRepository.getOne(rewards.basicArmorReward()));
+        player.setLevel(1);
         playerRepository.save(player);
         URI uri = uriBuilder.path("/player/{id}").buildAndExpand(player.getId()).toUri();
         System.out.println("Player adicionado com sucesso");
@@ -123,5 +126,16 @@ public class PlayerController {
     public ResponseEntity deletePlayer(@PathVariable Long id){
         playerRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/battle/{opponentId}/{playerId}")
+    public boolean pvpBattle(@PathVariable Long opponentId, @PathVariable Long playerId) {
+        Optional<Player> opponent = playerRepository.findById(opponentId);
+        Optional<Player> player = playerRepository.findById(playerId);
+        if (player.isPresent() && opponent.isPresent()) {
+            System.out.println(battlesValidation.validateKillOpponentNoLoading(player.get(), opponent.get()));
+            return battlesValidation.validateKillOpponentNoLoading(player.get(), opponent.get());
+        }
+        return false;
     }
 }
