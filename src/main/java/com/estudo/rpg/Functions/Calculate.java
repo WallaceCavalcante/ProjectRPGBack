@@ -40,6 +40,21 @@ public class Calculate {
         }
     }
 
+    public double calculateLevelUpSumPlayerHp(String classe) {
+        switch (classe) {
+            case "Assassino":
+                return 4;
+            case "Guerreiro":
+                return 8;
+            case "Viking":
+                return 7;
+            case "Pistoleiro":
+                return 2.5;
+            default:
+                return 3;
+        }
+    }
+
     public double calculatePlayerAttackSpeed(String classe) {
         switch (classe) {
             case "Assassino":

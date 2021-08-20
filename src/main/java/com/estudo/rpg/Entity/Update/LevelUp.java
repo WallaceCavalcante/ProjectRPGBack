@@ -1,25 +1,18 @@
 package com.estudo.rpg.Entity.Update;
 
 import com.estudo.rpg.Entity.Player;
+import com.estudo.rpg.Functions.Calculate;
 import com.estudo.rpg.Repository.PlayerRepository;
 
 public class LevelUp {
 
-    int level;
+    Calculate calculate = new Calculate();
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public Player levelUpPlayer(Long id, PlayerRepository playerRepository){
-        Player player = playerRepository.getOne(id);
-        level = player.getLevel() + 1;
+    public Player levelUpPlayer(Player player){
+        int level = player.getLevel() + 1;
+        double hp = player.getHp() + calculate.calculateLevelUpSumPlayerHp(player.getClasse());
+        player.setHp(hp);
         player.setLevel(level);
-        playerRepository.save(player);
         return player;
     }
 }

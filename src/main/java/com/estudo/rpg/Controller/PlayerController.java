@@ -36,6 +36,7 @@ public class PlayerController {
     Calculate calculate = new Calculate();
     Rewards rewards = new Rewards();
     BattlesValidation battlesValidation = new BattlesValidation(calculate);
+    LevelUp levelUp = new LevelUp();
 
     @GetMapping
     public List<Player> getAllPlayersOrASpecific(String classe){
@@ -102,11 +103,12 @@ public class PlayerController {
 
     @PutMapping("/levelUp/{id}")
     @Transactional
-    public ResponseEntity<Player> levelUp(@PathVariable Long id, LevelUp levelUp) {
+    public ResponseEntity<Player> levelUp(@PathVariable Long id) {
         Optional<Player> optionalPlayer = playerRepository.findById(id);
         if (optionalPlayer.isPresent()) {
-            Player player = levelUp.levelUpPlayer(id, playerRepository);
+            Player player = levelUp.levelUpPlayer(optionalPlayer.get());
             playerRepository.save(player);
+            System.out.println("Player: " + player.getNickname() + " Subiu de Nivel!");
             return ResponseEntity.ok(player);
         }
         return ResponseEntity.badRequest().build();
@@ -126,16 +128,5 @@ public class PlayerController {
     public ResponseEntity deletePlayer(@PathVariable Long id){
         playerRepository.deleteById(id);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/battle/{opponentId}/{playerId}")
-    public boolean pvpBattle(@PathVariable Long opponentId, @PathVariable Long playerId) {
-        Optional<Player> opponent = playerRepository.findById(opponentId);
-        Optional<Player> player = playerRepository.findById(playerId);
-        if (player.isPresent() && opponent.isPresent()) {
-            System.out.println(battlesValidation.validateKillOpponentNoLoading(player.get(), opponent.get()));
-            return battlesValidation.validateKillOpponentNoLoading(player.get(), opponent.get());
-        }
-        return false;
     }
 }

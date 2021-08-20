@@ -149,4 +149,54 @@ public class BattlesValidation {
         }
         return playerHp > 0;
     }
+
+    public boolean validateKillMonsterNoLoading(Player player, Monster monster) {
+        double playerHp = player.getHp();
+        double playerAttack = (player.getWeapon().getAttack() * calculate.calculatePlayerAttackSpeed(player.getClasse())) - monster.getArmor().getDefense();
+        double monsterHp = monster.getHp();
+        double monsterAttack = (monster.getWeapon().getAttack() * calculate.calculateMonsterAttackSpeed(monster.getRace())) - player.getArmor().getDefense();
+        int leftMoves = 100;
+        if (playerAttack <= 0) playerAttack = 1;
+        if (monsterAttack <= 0) monsterAttack = 1;
+
+        while (playerHp > 0 && monsterHp > 0 && leftMoves > 0) {
+            monsterHp -= playerAttack;
+            if (monsterHp < 0) monsterHp = 0;
+            if (monsterHp <= 0) {
+                return true;
+            }
+            playerHp -= monsterAttack;
+            if (playerHp < 0) playerHp = 0;
+            leftMoves--;
+        }
+        if(leftMoves == 0){
+            return playerHp > monsterHp;
+        }
+        return playerHp > 0;
+    }
+
+    public boolean validateKillBossNoLoading(Player player, Boss boss) {
+        double playerHp = player.getHp();
+        double playerAttack = (player.getWeapon().getAttack() * calculate.calculatePlayerAttackSpeed(player.getClasse())) - boss.getArmor().getDefense();
+        double bossHp = boss.getHp();
+        double bossAttack = (boss.getWeapon().getAttack() * calculate.calculateMonsterAttackSpeed(boss.getRace())) - player.getArmor().getDefense();
+        int leftMoves = 100;
+        if (playerAttack <= 0) playerAttack = 1;
+        if (bossAttack <= 0) bossAttack = 1;
+
+        while (playerHp > 0 && bossHp > 0 && leftMoves > 0) {
+            bossHp -= playerAttack;
+            if (bossHp < 0) bossHp = 0;
+            if (bossHp <= 0) {
+                return true;
+            }
+            playerHp -= bossAttack;
+            if (playerHp < 0) playerHp = 0;
+            leftMoves--;
+        }
+        if(leftMoves == 0){
+            return playerHp > bossHp;
+        }
+        return playerHp > 0;
+    }
 }
