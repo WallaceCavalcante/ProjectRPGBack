@@ -43,6 +43,17 @@ public class BattleController {
         return false;
     }
 
+    @GetMapping("/roll/pvp/{opponentId}/{playerId}")
+    public boolean pvpRollBattle(@PathVariable Long opponentId, @PathVariable Long playerId) {
+        Optional<Player> opponent = playerRepository.findById(opponentId);
+        Optional<Player> player = playerRepository.findById(playerId);
+        if (player.isPresent() && opponent.isPresent()) {
+            System.out.println(battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get()));
+            return battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get());
+        }
+        return false;
+    }
+
     @GetMapping("/monster/{monsterId}/{playerId}")
     public boolean monsterBattle(@PathVariable Long monsterId, @PathVariable Long playerId) {
         Optional<Monster> monster = monsterRepository.findById(monsterId);

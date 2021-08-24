@@ -1,5 +1,6 @@
 package com.estudo.rpg.Functions.Validations;
 
+
 import com.estudo.rpg.Entity.Boss;
 import com.estudo.rpg.Entity.Monster;
 import com.estudo.rpg.Entity.Player;
@@ -149,6 +150,22 @@ public class BattlesValidation {
         }
         return playerHp > 0;
     }
+
+    public boolean validateKillOpponentRandomValue(Player player, Player opponent) {
+        double playerMaxAttack = player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse());
+        double playerMinAttack = (player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse())) / 2;
+
+        double opponentMaxAttack = opponent.getHp() * opponent.getWeapon().getAttack() * opponent.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(opponent.getClasse());
+        double opponentMinAttack = (opponent.getHp() * opponent.getWeapon().getAttack() * opponent.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(opponent.getClasse())) / 2;
+
+        double playerAttackRolled = (Math.random() * ((playerMaxAttack - playerMinAttack) + 1)) + playerMinAttack;
+        System.out.println("Player atacou com: " + decimalFormat.format(playerAttackRolled) + " de dano!");
+        double opponentAttackRolled = (Math.random() * ((opponentMaxAttack - opponentMinAttack) + 1)) + opponentMinAttack;
+        System.out.println("Oponente atacou com: " + decimalFormat.format(opponentAttackRolled) + " de dano!\n\n");
+
+        return playerAttackRolled > opponentAttackRolled;
+    }
+
 
     public boolean validateKillMonsterNoLoading(Player player, Monster monster) {
         double playerHp = player.getHp();
