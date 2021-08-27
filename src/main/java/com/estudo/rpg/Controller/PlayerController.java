@@ -1,8 +1,11 @@
 package com.estudo.rpg.Controller;
 
+import com.estudo.rpg.Entity.Armor;
+import com.estudo.rpg.Entity.Monster;
 import com.estudo.rpg.Entity.Player;
 import com.estudo.rpg.Entity.Update.LevelUp;
 import com.estudo.rpg.Entity.Update.NewQuestForPlayer;
+import com.estudo.rpg.Entity.Weapon;
 import com.estudo.rpg.Functions.Calculate;
 import com.estudo.rpg.Functions.Rewards;
 import com.estudo.rpg.Functions.Validations.BattlesValidation;
@@ -101,6 +104,26 @@ public class PlayerController {
         return ResponseEntity.badRequest().build();
     }
 
+    @PutMapping("/xpUpdate/{id}/{xpRecebida}")
+    @Transactional
+    public ResponseEntity<Player> levelUp(@PathVariable Long id, @PathVariable int xpRecebida) {
+        Optional<Player> optionalPlayer = playerRepository.findById(id);
+        Player player = new Player();
+        if (optionalPlayer.isPresent()) {
+            int xpToLevelUp = optionalPlayer.get().getLevel() * 10;
+            optionalPlayer.get().setXp(xpRecebida);
+            playerRepository.save(optionalPlayer.get());
+            while(optionalPlayer.get().getXp() > xpToLevelUp){
+                optionalPlayer.get().setXp(optionalPlayer.get().getXp() - xpToLevelUp);
+                player = levelUp.levelUpPlayer(optionalPlayer.get());
+                playerRepository.save(player);
+                System.out.println("Player: " + player.getNickname() + " Subiu de Nivel!");
+            }
+            return ResponseEntity.ok(player);
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
     @PutMapping("/levelUp/{id}")
     @Transactional
     public ResponseEntity<Player> levelUp(@PathVariable Long id) {
@@ -110,6 +133,34 @@ public class PlayerController {
             playerRepository.save(player);
             System.out.println("Player: " + player.getNickname() + " Subiu de Nivel!");
             return ResponseEntity.ok(player);
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/changeWeapon/{weaponId}/{playerId}")
+    @Transactional
+    public ResponseEntity<Player> changeWeapon(@PathVariable Long weaponId, @PathVariable Long playerId) {
+        Optional<Player> player = playerRepository.findById(playerId);
+        Optional<Weapon> weapon = weaponRepository.findById(weaponId);
+        if (player.isPresent() && weapon.isPresent()) {
+            player.get().setWeapon(weapon.get());
+            playerRepository.save(player.get());
+            System.out.println("Foi trocado a arma do Player: " + player.get().getNickname() + "!");
+            return ResponseEntity.ok(player.get());
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/changeArmor/{armorId}/{playerId}")
+    @Transactional
+    public ResponseEntity<Player> changeArmor(@PathVariable Long armorId, @PathVariable Long playerId) {
+        Optional<Player> player = playerRepository.findById(playerId);
+        Optional<Armor> armor = armorRepository.findById(armorId);
+        if (player.isPresent() && armor.isPresent()) {
+            player.get().setArmor(armor.get());
+            playerRepository.save(player.get());
+            System.out.println("Foi trocado a armadura do Player: " + player.get().getNickname() + "!");
+            return ResponseEntity.ok(player.get());
         }
         return ResponseEntity.badRequest().build();
     }

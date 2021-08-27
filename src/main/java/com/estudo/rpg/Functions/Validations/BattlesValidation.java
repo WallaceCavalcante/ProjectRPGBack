@@ -1,6 +1,7 @@
 package com.estudo.rpg.Functions.Validations;
 
 
+import com.estudo.rpg.Entity.BattleResults;
 import com.estudo.rpg.Entity.Boss;
 import com.estudo.rpg.Entity.Monster;
 import com.estudo.rpg.Entity.Player;
@@ -151,7 +152,7 @@ public class BattlesValidation {
         return playerHp > 0;
     }
 
-    public boolean validateKillOpponentRandomValue(Player player, Player opponent) {
+    public BattleResults validateKillOpponentRandomValue(Player player, Player opponent) {
         double playerMaxAttack = player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse());
         double playerMinAttack = (player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse())) / 2;
 
@@ -163,9 +164,43 @@ public class BattlesValidation {
         double opponentAttackRolled = (Math.random() * ((opponentMaxAttack - opponentMinAttack) + 1)) + opponentMinAttack;
         System.out.println("Oponente atacou com: " + decimalFormat.format(opponentAttackRolled) + " de dano!\n\n");
 
-        return playerAttackRolled > opponentAttackRolled;
+        BattleResults battleResults = new BattleResults();
+        battleResults.setWinner(playerAttackRolled > opponentAttackRolled);
+        battleResults.setPlayerRolled(playerAttackRolled);
+        battleResults.setOpponentRolled(opponentAttackRolled);
+
+        return battleResults;
     }
 
+    public boolean validateKillMonsterRandomValue(Player player, Monster monster) {
+        double playerMaxAttack = player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse());
+        double playerMinAttack = (player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse())) / 2;
+
+        double monsterMaxAttack = monster.getHp() * monster.getWeapon().getAttack() * monster.getArmor().getDefense() * calculate.calculateMonsterAttackSpeed(monster.getRace());
+        double monsterMinAttack = (monster.getHp() * monster.getWeapon().getAttack() * monster.getArmor().getDefense() * calculate.calculateMonsterAttackSpeed(monster.getRace())) / 3;
+
+        double playerAttackRolled = (Math.random() * ((playerMaxAttack - playerMinAttack) + 1)) + playerMinAttack;
+        System.out.println("Player atacou com: " + decimalFormat.format(playerAttackRolled) + " de dano!");
+        double monsterttackRolled = (Math.random() * ((monsterMaxAttack - monsterMinAttack) + 1)) + monsterMinAttack;
+        System.out.println("Monstro atacou com: " + decimalFormat.format(monsterttackRolled) + " de dano!\n\n");
+
+        return playerAttackRolled > monsterttackRolled;
+    }
+
+    public boolean validateKillBossRandomValue(Player player, Boss boss) {
+        double playerMaxAttack = player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse());
+        double playerMinAttack = (player.getHp() * player.getWeapon().getAttack() * player.getArmor().getDefense() * calculate.calculatePlayerAttackSpeed(player.getClasse())) / 2;
+
+        double bossMaxAttack = boss.getHp() * boss.getWeapon().getAttack() * boss.getArmor().getDefense() * calculate.calculateMonsterAttackSpeed(boss.getRace());
+        double bossMinAttack = (boss.getHp() * boss.getWeapon().getAttack() * boss.getArmor().getDefense() * calculate.calculateMonsterAttackSpeed(boss.getRace())) / 3;
+
+        double playerAttackRolled = (Math.random() * ((playerMaxAttack - playerMinAttack) + 1)) + playerMinAttack;
+        System.out.println("Player atacou com: " + decimalFormat.format(playerAttackRolled) + " de dano!");
+        double bossttackRolled = (Math.random() * ((bossMaxAttack - bossMinAttack) + 1)) + bossMinAttack;
+        System.out.println("Boss atacou com: " + decimalFormat.format(bossttackRolled) + " de dano!\n\n");
+
+        return playerAttackRolled > bossttackRolled;
+    }
 
     public boolean validateKillMonsterNoLoading(Player player, Monster monster) {
         double playerHp = player.getHp();

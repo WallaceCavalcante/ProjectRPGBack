@@ -1,5 +1,6 @@
 package com.estudo.rpg.Controller;
 
+import com.estudo.rpg.Entity.BattleResults;
 import com.estudo.rpg.Entity.Boss;
 import com.estudo.rpg.Entity.Monster;
 import com.estudo.rpg.Entity.Player;
@@ -44,14 +45,14 @@ public class BattleController {
     }
 
     @GetMapping("/roll/pvp/{opponentId}/{playerId}")
-    public boolean pvpRollBattle(@PathVariable Long opponentId, @PathVariable Long playerId) {
+    public BattleResults pvpRollBattle(@PathVariable Long opponentId, @PathVariable Long playerId) {
         Optional<Player> opponent = playerRepository.findById(opponentId);
         Optional<Player> player = playerRepository.findById(playerId);
         if (player.isPresent() && opponent.isPresent()) {
-            System.out.println(battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get()));
+            System.out.println(battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get()).isWinner());
             return battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get());
         }
-        return false;
+        return null;
     }
 
     @GetMapping("/monster/{monsterId}/{playerId}")
@@ -59,8 +60,17 @@ public class BattleController {
         Optional<Monster> monster = monsterRepository.findById(monsterId);
         Optional<Player> player = playerRepository.findById(playerId);
         if (player.isPresent() && monster.isPresent()) {
-            System.out.println(battlesValidation.validateKillMonsterNoLoading(player.get(), monster.get()));
             return battlesValidation.validateKillMonsterNoLoading(player.get(), monster.get());
+        }
+        return false;
+    }
+
+    @GetMapping("/roll/monster/{monsterId}/{playerId}")
+    public boolean monsterRollBattle(@PathVariable Long monsterId, @PathVariable Long playerId) {
+        Optional<Monster> monster = monsterRepository.findById(monsterId);
+        Optional<Player> player = playerRepository.findById(playerId);
+        if (player.isPresent() && monster.isPresent()) {
+            return battlesValidation.validateKillMonsterRandomValue(player.get(), monster.get());
         }
         return false;
     }
@@ -72,6 +82,16 @@ public class BattleController {
         if (player.isPresent() && boss.isPresent()) {
             System.out.println(battlesValidation.validateKillBossNoLoading(player.get(), boss.get()));
             return battlesValidation.validateKillBossNoLoading(player.get(), boss.get());
+        }
+        return false;
+    }
+
+    @GetMapping("/roll/boss/{bossId}/{playerId}")
+    public boolean bossRollBattle(@PathVariable Long bossId, @PathVariable Long playerId) {
+        Optional<Boss> boss = bossRepository.findById(bossId);
+        Optional<Player> player = playerRepository.findById(playerId);
+        if (player.isPresent() && boss.isPresent()) {
+            return battlesValidation.validateKillBossRandomValue(player.get(), boss.get());
         }
         return false;
     }
