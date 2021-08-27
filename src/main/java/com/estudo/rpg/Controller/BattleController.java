@@ -49,7 +49,6 @@ public class BattleController {
         Optional<Player> opponent = playerRepository.findById(opponentId);
         Optional<Player> player = playerRepository.findById(playerId);
         if (player.isPresent() && opponent.isPresent()) {
-            System.out.println(battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get()).isWinner());
             return battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get());
         }
         return null;
@@ -66,13 +65,13 @@ public class BattleController {
     }
 
     @GetMapping("/roll/monster/{monsterId}/{playerId}")
-    public boolean monsterRollBattle(@PathVariable Long monsterId, @PathVariable Long playerId) {
+    public BattleResults monsterRollBattle(@PathVariable Long monsterId, @PathVariable Long playerId) {
         Optional<Monster> monster = monsterRepository.findById(monsterId);
         Optional<Player> player = playerRepository.findById(playerId);
         if (player.isPresent() && monster.isPresent()) {
             return battlesValidation.validateKillMonsterRandomValue(player.get(), monster.get());
         }
-        return false;
+        return null;
     }
 
     @GetMapping("/boss/{bossId}/{playerId}")
@@ -87,12 +86,12 @@ public class BattleController {
     }
 
     @GetMapping("/roll/boss/{bossId}/{playerId}")
-    public boolean bossRollBattle(@PathVariable Long bossId, @PathVariable Long playerId) {
+    public BattleResults bossRollBattle(@PathVariable Long bossId, @PathVariable Long playerId) {
         Optional<Boss> boss = bossRepository.findById(bossId);
         Optional<Player> player = playerRepository.findById(playerId);
         if (player.isPresent() && boss.isPresent()) {
             return battlesValidation.validateKillBossRandomValue(player.get(), boss.get());
         }
-        return false;
+        return null;
     }
 }
