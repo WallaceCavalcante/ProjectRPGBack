@@ -14,7 +14,7 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     List<Weapon> weapons;
 
@@ -24,5 +24,9 @@ public class Inventory {
 
     public void setWeapons(List<Weapon> weapons) {
         this.weapons = weapons;
+    }
+
+    public void addWeapon(Weapon newWeapon){
+        this.weapons.add(newWeapon);
     }
 }

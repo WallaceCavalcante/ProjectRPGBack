@@ -50,6 +50,11 @@ INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Infinity Armor', 9999999
 INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Armor of God', 65.0, 'Legendary', 50);          --8
 INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Armor Just to Delete', 0.0, 'DELETE ME', 0);    --9
 
+INSERT INTO INVENTORY(id) VALUES(1);
+INSERT INTO INVENTORY(id) VALUES(2);
+INSERT INTO INVENTORY_WEAPONS(inventory_id, weapons_id) VALUES(1, 3);
+INSERT INTO INVENTORY_WEAPONS(inventory_id, weapons_id) VALUES(2, 8);
+
 INSERT INTO MONSTER(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES('Tiny Orc', 2, 1, 1, 5, 'Orc', 2);           --1
 INSERT INTO MONSTER(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES('Black Orc', 5, 2, 2, 10, 'Orc', 3);         --2
 INSERT INTO MONSTER(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES('Red Orc', 7, 11, 3, 12, 'Orc', 4);          --3
@@ -67,8 +72,8 @@ INSERT INTO MONSTER(name, level, weapon_id, armor_id, hp, race, xp_when_killed) 
 INSERT INTO BOSS(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES ('Captain Orc', 15, 6, 5, 50, 'Orc', 150);     --1
 INSERT INTO BOSS(name, level, weapon_id, armor_id, hp, race, xp_when_killed) VALUES ('Goblin King', 30, 7, 6, 1, 'Goblin', 300);   --2
 
-INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp) VALUES('Wace', 1, 9, 'Assassino', 'M', 3, 2, 0);     --1
-INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp) VALUES('GM', 99, 99999999, 'Guerreiro', 'F', 8, 7, 0);--2
+INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp, inventory_id) VALUES('Wace', 1, 9, 'Assassino', 'M', 3, 2, 0, 1);     --1
+INSERT INTO PLAYER(nickname, level, hp, classe, gender, weapon_id, armor_id, xp, inventory_id) VALUES('GM', 99, 99999999, 'Guerreiro', 'F', 8, 7, 0, 2);--2
 
 INSERT INTO QUEST(name, target, monster_id, completed) VALUES ('The start of your journey', 2, 1, false);
 INSERT INTO QUEST(name, target, monster_id, completed) VALUES ('A little more hard', 2, 2, false);
