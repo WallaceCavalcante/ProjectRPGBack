@@ -1,11 +1,8 @@
 package com.estudo.rpg.Controller;
 
-import com.estudo.rpg.Entity.Armor;
-import com.estudo.rpg.Entity.Monster;
-import com.estudo.rpg.Entity.Player;
+import com.estudo.rpg.Entity.*;
 import com.estudo.rpg.Entity.Update.LevelUp;
 import com.estudo.rpg.Entity.Update.NewQuestForPlayer;
-import com.estudo.rpg.Entity.Weapon;
 import com.estudo.rpg.Functions.Calculate;
 import com.estudo.rpg.Functions.Rewards;
 import com.estudo.rpg.Functions.Validations.BattlesValidation;
@@ -86,6 +83,7 @@ public class PlayerController {
         player.setWeapon(weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse())));
         player.setArmor(armorRepository.getOne(rewards.basicArmorReward()));
         player.setLevel(1);
+        player.setInventory(new Inventory());
         playerRepository.save(player);
         URI uri = uriBuilder.path("/player/{id}").buildAndExpand(player.getId()).toUri();
         System.out.println("Player adicionado com sucesso");
@@ -146,6 +144,20 @@ public class PlayerController {
             player.get().setWeapon(weapon.get());
             playerRepository.save(player.get());
             System.out.println("Foi trocado a arma do Player: " + player.get().getNickname() + "!");
+            return ResponseEntity.ok(player.get());
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/addWeaponToInventory/{weaponId}/{playerId}")
+    @Transactional
+    public ResponseEntity<Player> addWeaponToInventory(@PathVariable Long weaponId, @PathVariable Long playerId) {
+        Optional<Player> player = playerRepository.findById(playerId);
+        Optional<Weapon> weapon = weaponRepository.findById(weaponId);
+        if (player.isPresent() && weapon.isPresent()) {
+            player.get().getInventory().getWeapons().add(weapon.get());
+            playerRepository.save(player.get());
+            System.out.println("Adicionado a arma ao inventario do Player: " + player.get().getNickname() + "!");
             return ResponseEntity.ok(player.get());
         }
         return ResponseEntity.badRequest().build();

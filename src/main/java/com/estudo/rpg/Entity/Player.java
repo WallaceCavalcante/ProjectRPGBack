@@ -40,6 +40,8 @@ public class Player {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Quest> quests;
     private int xp;
+    @OneToOne(cascade = {CascadeType.ALL})
+    private Inventory inventory;
 
     public Long getId() {
         return Id;
@@ -135,5 +137,13 @@ public class Player {
 
     public void setXp(int xp) {
         this.xp = xp;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }

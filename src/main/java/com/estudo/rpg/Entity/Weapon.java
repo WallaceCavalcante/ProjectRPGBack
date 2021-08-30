@@ -11,9 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Weapon {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
