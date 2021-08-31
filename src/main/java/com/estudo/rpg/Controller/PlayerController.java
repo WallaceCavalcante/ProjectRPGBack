@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,10 +81,11 @@ public class PlayerController {
     @PostMapping("/register")
     public ResponseEntity<Player> insertPlayer(@RequestBody @Valid Player player, UriComponentsBuilder uriBuilder){
         player.setHp(calculate.calculatePlayerHp(player.getClasse()));
-        player.setWeapon(weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse())));
         player.setArmor(armorRepository.getOne(rewards.basicArmorReward()));
         player.setLevel(1);
         player.setInventory(new Inventory());
+        player.getInventory().setWeapons(new ArrayList<>());
+        player.getInventory().addWeapon((weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse()))));
         playerRepository.save(player);
         URI uri = uriBuilder.path("/player/{id}").buildAndExpand(player.getId()).toUri();
         System.out.println("Player adicionado com sucesso");
