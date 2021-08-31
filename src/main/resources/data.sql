@@ -1,54 +1,54 @@
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Sword', 11.0, 'Common', 1, 'Sword');         --1
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Axe', 12.0, 'Common', 1, 'Axe');             --2
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Dagger', 8.0, 'Common', 1, 'Dagger');        --3
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Bow', 10.0, 'Common', 1, 'Bow');             --4
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Staff', 11.0, 'Common', 1, 'Staff');         --5
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Giant Axe', 49.0, 'Uncommon', 15, 'Axe');          --6
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Destructor', 97.0, 'Legendary', 30, 'Axe');        --7
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Excalibur', 9999999.0, 'Undefined', 99, 'Sword');  --8
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Hammer', 18.0, 'Common', 1, 'Hammer');       --9
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Hammer of God', 170.0, 'Legendary', 50, 'Hammer'); --10
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Orc Hammer', 23.0, 'Uncommon', 10, 'Hammer');      --11
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Orc Sword', 18.0, 'Uncommon', 17, 'Sword');        --12
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Orc Bow', 19.5, 'Uncommon', 18, 'Bow');            --13
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Goblin Dagger', 22.0, 'Uncommon', 17, 'Dagger');   --14
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Goblin Sword', 27.0, 'Uncommon', 19, 'Sword');     --15
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Goblin Bow', 30.0, 'Uncommon', 18, 'Bow');         --16
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Goblin Staff', 33.0, 'Uncommon', 20, 'Staff');     --17
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Supreme Hammer', 62.0, 'Uncommon', 25, 'Hammer');  --18
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Goblin Knife', 18.0, 'Uncommon', 14, 'Dagger');     --19
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Basic Pistols', 5.7, 'Common', 1, 'Pistols');      --20
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Sword', 16.0, 'Common', 1, 'Sword');  --21
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Axe', 17.0, 'Common', 1, 'Axe');      --22
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Dagger', 13.0, 'Common', 1, 'Dagger');--23
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Bow', 15.0, 'Common', 1, 'Bow');      --24
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Staff', 16.0, 'Common', 1, 'Staff');  --25
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Pistols', 10.7, 'Common', 1, 'Pistols');--26
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Intermediate Hammer', 23.0, 'Common', 1, 'Hammer');--27
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Sword', 21.0, 'Uncommon', 1, 'Sword');    --28
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Axe', 22.0, 'Uncommon', 1, 'Axe');        --29
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Dagger', 18.0, 'Uncommon', 1, 'Dagger');  --30
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Bow', 20.0, 'Uncommon', 1, 'Bow');        --31
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Staff', 21.0, 'Uncommon', 1, 'Staff');    --32
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Pistols', 15.7, 'Uncommon', 1, 'Pistols'); --33
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Advanced Hammer', 28.0, 'Uncommon', 1, 'Hammer');  --34
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Sword', 29.0, 'Rare', 1, 'Sword');          --35
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Axe', 30.0, 'Rare', 1, 'Axe');              --36
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Dagger', 26.0, 'Rare', 1, 'Dagger');        --37
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Bow', 28.0, 'Rare', 1, 'Bow');              --38
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Staff', 29.0, 'Rare', 1, 'Staff');          --39
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Pistols', 23.7, 'Rare', 1, 'Pistols');      --40
-INSERT INTO WEAPON(name, attack, rarity, level, type) VALUES('Heroic Hammer', 36.0, 'Rare', 1, 'Hammer');        --41
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Sword', 11.0, 'Common', 1, 'Sword', false, 0);         --1
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Axe', 12.0, 'Common', 1, 'Axe', false, 0);             --2
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Dagger', 8.0, 'Common', 1, 'Dagger', false, 0);        --3
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Bow', 10.0, 'Common', 1, 'Bow', false, 0);             --4
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Staff', 11.0, 'Common', 1, 'Staff', false, 0);         --5
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Giant Axe', 49.0, 'Uncommon', 15, 'Axe', false, 0);          --6
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Destructor', 97.0, 'Legendary', 30, 'Axe', false, 0);        --7
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Excalibur', 9999999.0, 'Undefined', 99, 'Sword', false, 0);  --8
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Hammer', 18.0, 'Common', 1, 'Hammer', false, 0);       --9
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Hammer of God', 170.0, 'Legendary', 50, 'Hammer', false, 0); --10
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Orc Hammer', 23.0, 'Uncommon', 10, 'Hammer', false, 0);      --11
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Orc Sword', 18.0, 'Uncommon', 17, 'Sword', false, 0);        --12
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Orc Bow', 19.5, 'Uncommon', 18, 'Bow', false, 0);            --13
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Goblin Dagger', 22.0, 'Uncommon', 17, 'Dagger', false, 0);   --14
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Goblin Sword', 27.0, 'Uncommon', 19, 'Sword', false, 0);     --15
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Goblin Bow', 30.0, 'Uncommon', 18, 'Bow', false, 0);         --16
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Goblin Staff', 33.0, 'Uncommon', 20, 'Staff', false, 0);     --17
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Supreme Hammer', 62.0, 'Uncommon', 25, 'Hammer', false, 0);  --18
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Goblin Knife', 18.0, 'Uncommon', 14, 'Dagger', false, 0);     --19
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Basic Pistols', 5.7, 'Common', 1, 'Pistols', false, 0);      --20
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Sword', 16.0, 'Common', 1, 'Sword', false, 0);  --21
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Axe', 17.0, 'Common', 1, 'Axe', false, 0);      --22
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Dagger', 13.0, 'Common', 1, 'Dagger', false, 0);--23
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Bow', 15.0, 'Common', 1, 'Bow', false, 0);      --24
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Staff', 16.0, 'Common', 1, 'Staff', false, 0);  --25
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Pistols', 10.7, 'Common', 1, 'Pistols', false, 0);--26
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Intermediate Hammer', 23.0, 'Common', 1, 'Hammer', false, 0);--27
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Sword', 21.0, 'Uncommon', 1, 'Sword', false, 0);    --28
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Axe', 22.0, 'Uncommon', 1, 'Axe', false, 0);        --29
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Dagger', 18.0, 'Uncommon', 1, 'Dagger', false, 0);  --30
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Bow', 20.0, 'Uncommon', 1, 'Bow', false, 0);        --31
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Staff', 21.0, 'Uncommon', 1, 'Staff', false, 0);    --32
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Pistols', 15.7, 'Uncommon', 1, 'Pistols', false, 0); --33
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Advanced Hammer', 28.0, 'Uncommon', 1, 'Hammer', false, 0);  --34
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Sword', 29.0, 'Rare', 1, 'Sword', false, 0);          --35
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Axe', 30.0, 'Rare', 1, 'Axe', false, 0);              --36
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Dagger', 26.0, 'Rare', 1, 'Dagger', false, 0);        --37
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Bow', 28.0, 'Rare', 1, 'Bow', false, 0);              --38
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Staff', 29.0, 'Rare', 1, 'Staff', false, 0);          --39
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Pistols', 23.7, 'Rare', 1, 'Pistols', false, 0);      --40
+INSERT INTO WEAPON(name, attack, rarity, level, type, is_Selling, price) VALUES('Heroic Hammer', 36.0, 'Rare', 1, 'Hammer', false, 0);        --41
 
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('No Armor', 1.0, '-', 0);                        --1
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Basic Armor', 4.0, 'Common', 1);                --2
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Medium Armor', 7.0, 'Common', 1);               --3
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Advanced Armor', 11.0, 'Common', 1);            --4
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Heavy Armor', 15.0, 'Uncommon', 15);            --5
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Fire Armor', 35.0, 'Rare', 30);                 --6
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Infinity Armor', 9999999.0, 'Undefined', 99);   --7
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Armor of God', 65.0, 'Legendary', 50);          --8
-INSERT INTO ARMOR(name, defense, rarity, level) VALUES('Armor Just to Delete', 0.0, 'DELETE ME', 0);    --9
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('No Armor', 1.0, '-', 0, false, 0);                        --1
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Basic Armor', 4.0, 'Common', 1, false, 0);                --2
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Medium Armor', 7.0, 'Common', 1, false, 0);               --3
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Advanced Armor', 11.0, 'Common', 1, false, 0);            --4
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Heavy Armor', 15.0, 'Uncommon', 15, false, 0);            --5
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Fire Armor', 35.0, 'Rare', 30, false, 0);                 --6
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Infinity Armor', 9999999.0, 'Undefined', 99, false, 0);   --7
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Armor of God', 65.0, 'Legendary', 50, false, 0);          --8
+INSERT INTO ARMOR(name, defense, rarity, level, is_Selling, price) VALUES('Armor Just to Delete', 0.0, 'DELETE ME', 0, false, 0);    --9
 
 INSERT INTO INVENTORY(id) VALUES(1);
 INSERT INTO INVENTORY(id) VALUES(2);

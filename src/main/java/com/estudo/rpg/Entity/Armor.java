@@ -24,6 +24,8 @@ public class Armor {
     private String rarity;
     @NotNull
     private int level;
+    private boolean isSelling;
+    private Double price;
 
     public Armor() {
     }
@@ -66,5 +68,21 @@ public class Armor {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public boolean isSelling() {
+        return isSelling;
+    }
+
+    public void setSelling(boolean selling) {
+        isSelling = selling;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

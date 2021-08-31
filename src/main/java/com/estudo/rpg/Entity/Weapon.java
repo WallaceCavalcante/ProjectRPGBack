@@ -1,7 +1,7 @@
 package com.estudo.rpg.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +26,9 @@ public class Weapon {
     private int level;
     @NotNull
     private String type;
+    private boolean isSelling;
+    @Nullable
+    private Double price;
 
     public Weapon() {
     }
@@ -76,5 +79,21 @@ public class Weapon {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isSelling() {
+        return isSelling;
+    }
+
+    public void setSelling(boolean selling) {
+        isSelling = selling;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

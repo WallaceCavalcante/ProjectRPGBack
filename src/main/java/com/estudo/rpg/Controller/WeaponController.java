@@ -40,13 +40,54 @@ public class WeaponController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Weapon> insertWeapon(@RequestBody Weapon weapon, UriComponentsBuilder uriBuilder){
         weaponRepository.save(weapon);
 
         URI uri = uriBuilder.path("/weapon/{id}").buildAndExpand(weapon.getId()).toUri();
         System.out.println("Arma adicionada com sucesso");
         return ResponseEntity.created(uri).body(weapon);
+    }
+
+    @PutMapping("/sell/{weaponId}/{value}")
+    public ResponseEntity<Weapon> sellWeapon(@PathVariable Long weaponId, @PathVariable Double value){
+        Optional<Weapon> optionalWeapon = weaponRepository.findById(weaponId);
+        if(optionalWeapon.isPresent()) {
+            Weapon weapon = optionalWeapon.get();
+            weapon.setSelling(true);
+            weapon.setPrice(value);
+            weaponRepository.save(weapon);
+            return ResponseEntity.ok(weapon);
+        }
+        System.out.println("A arma foi colocada à venda com sucesso!");
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/sell/changePrice/{weaponId}/{newPrice}")
+    public ResponseEntity<Weapon> changeWeaponPrice(@PathVariable Long weaponId, @PathVariable Double newPrice){
+        Optional<Weapon> optionalWeapon = weaponRepository.findById(weaponId);
+        if(optionalWeapon.isPresent()) {
+            Weapon weapon = optionalWeapon.get();
+            weapon.setPrice(newPrice);
+            weaponRepository.save(weapon);
+            return ResponseEntity.ok(weapon);
+        }
+        System.out.println("Foi alterado o valor da arma com sucesso!");
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/cancelSelling/{weaponId}")
+    public ResponseEntity<Weapon> cancelSellingWeapon(@PathVariable Long weaponId){
+        Optional<Weapon> optionalWeapon = weaponRepository.findById(weaponId);
+        if(optionalWeapon.isPresent()) {
+            Weapon weapon = optionalWeapon.get();
+            weapon.setSelling(false);
+            weapon.setPrice(0.0);
+            weaponRepository.save(weapon);
+            return ResponseEntity.ok(weapon);
+        }
+        System.out.println("A arma foi tirada da venda com sucesso!");
+        return ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/{id}")
