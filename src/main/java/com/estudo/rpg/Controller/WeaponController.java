@@ -42,6 +42,7 @@ public class WeaponController {
 
     @PostMapping("/add")
     public ResponseEntity<Weapon> insertWeapon(@RequestBody Weapon weapon, UriComponentsBuilder uriBuilder){
+        weapon.setPrice(0.0);
         weaponRepository.save(weapon);
 
         URI uri = uriBuilder.path("/weapon/{id}").buildAndExpand(weapon.getId()).toUri();
