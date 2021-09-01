@@ -83,6 +83,7 @@ public class PlayerController {
         player.setHp(calculate.calculatePlayerHp(player.getClasse()));
         player.setArmor(armorRepository.getOne(rewards.basicArmorReward()));
         player.setLevel(1);
+        player.setCoins(500.0);
         player.setInventory(new Inventory());
         player.getInventory().setWeapons(new ArrayList<>());
         player.getInventory().addWeapon((weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse()))));

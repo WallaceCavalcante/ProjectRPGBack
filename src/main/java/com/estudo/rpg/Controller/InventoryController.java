@@ -42,7 +42,9 @@ public class InventoryController {
         Optional<Weapon> optionalWeapon = weaponRepository.findById(weaponId);
         if (optionalPlayer.isPresent() && optionalWeapon.isPresent()) {
             Player player = optionalPlayer.get();
-            player.getInventory().addWeapon(optionalWeapon.get());
+            Weapon weapon = optionalWeapon.get();
+            weapon.setOwner(player.getId());
+            player.getInventory().addWeapon(weapon);
             playerRepository.save(player);
             return ResponseEntity.ok(player);
         }

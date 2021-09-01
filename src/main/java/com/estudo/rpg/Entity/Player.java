@@ -42,6 +42,7 @@ public class Player {
     private int xp;
     @OneToOne(cascade = {CascadeType.ALL})
     private Inventory inventory;
+    private Double coins;
 
     public Long getId() {
         return Id;
@@ -145,5 +146,13 @@ public class Player {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public Double getCoins() {
+        return coins;
+    }
+
+    public void setCoins(Double coins) {
+        this.coins = coins;
     }
 }

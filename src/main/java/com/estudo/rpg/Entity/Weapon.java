@@ -31,6 +31,7 @@ public class Weapon {
     private boolean isSelling;
     @Nullable
     private Double price;
+    private Long owner;
 
     public Weapon() {
     }
@@ -97,5 +98,13 @@ public class Weapon {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Long getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Long owner) {
+        this.owner = owner;
     }
 }

@@ -29,4 +29,11 @@ public class Inventory {
     public void addWeapon(Weapon newWeapon){
         this.weapons.add(newWeapon);
     }
+    public void removeWeapon(Long weaponId){
+        for(int i = 0; i < weapons.size(); i++){
+            if(weapons.get(i).getId() == weaponId){
+                weapons.remove(i);
+            }
+        }
+    }
 }
