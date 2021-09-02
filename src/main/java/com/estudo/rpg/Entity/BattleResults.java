@@ -5,6 +5,7 @@ public class BattleResults {
     private boolean winner;
     private Double playerRolled;
     private Double opponentRolled;
+    private int coinsDropped;
 
     public boolean isWinner() {
         return winner;
@@ -28,5 +29,13 @@ public class BattleResults {
 
     public void setOpponentRolled(Double opponentRolled) {
         this.opponentRolled = opponentRolled;
+    }
+
+    public int getCoinsDropped() {
+        return coinsDropped;
+    }
+
+    public void setCoinsDropped(int coinsDropped) {
+        this.coinsDropped = coinsDropped;
     }
 }

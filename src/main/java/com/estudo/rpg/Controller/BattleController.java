@@ -66,10 +66,18 @@ public class BattleController {
 
     @GetMapping("/roll/monster/{monsterId}/{playerId}")
     public BattleResults monsterRollBattle(@PathVariable Long monsterId, @PathVariable Long playerId) {
-        Optional<Monster> monster = monsterRepository.findById(monsterId);
-        Optional<Player> player = playerRepository.findById(playerId);
-        if (player.isPresent() && monster.isPresent()) {
-            return battlesValidation.validateKillMonsterRandomValue(player.get(), monster.get());
+        Optional<Monster> optionalMonster = monsterRepository.findById(monsterId);
+        Optional<Player> optionalPlayer = playerRepository.findById(playerId);
+        if (optionalPlayer.isPresent() && optionalMonster.isPresent()) {
+            Player player = optionalPlayer.get();
+            Monster monster = optionalMonster.get();
+            BattleResults battleResults = battlesValidation.validateKillMonsterRandomValue(player, monster);
+            if(battleResults.isWinner()){
+                battleResults.setCoinsDropped((int)((Math.random() * ((monster.getXpWhenKilled()*10 - monster.getXpWhenKilled())*3 + 1)) + monster.getXpWhenKilled()*3));
+                player.setCoins(player.getCoins() + battleResults.getCoinsDropped());
+                playerRepository.save(player);
+            }
+            return battleResults;
         }
         return null;
     }
@@ -87,10 +95,18 @@ public class BattleController {
 
     @GetMapping("/roll/boss/{bossId}/{playerId}")
     public BattleResults bossRollBattle(@PathVariable Long bossId, @PathVariable Long playerId) {
-        Optional<Boss> boss = bossRepository.findById(bossId);
-        Optional<Player> player = playerRepository.findById(playerId);
-        if (player.isPresent() && boss.isPresent()) {
-            return battlesValidation.validateKillBossRandomValue(player.get(), boss.get());
+        Optional<Boss> optionalBoss = bossRepository.findById(bossId);
+        Optional<Player> optionalPlayer = playerRepository.findById(playerId);
+        if (optionalPlayer.isPresent() && optionalBoss.isPresent()) {
+            Player player = optionalPlayer.get();
+            Boss boss = optionalBoss.get();
+            BattleResults battleResults = battlesValidation.validateKillBossRandomValue(player, boss);
+            if(battleResults.isWinner()){
+                battleResults.setCoinsDropped((int) ((Math.random() * ((boss.getXpWhenKilled()*2 - boss.getXpWhenKilled()) + 1)) + boss.getXpWhenKilled()));
+                player.setCoins(player.getCoins() + battleResults.getCoinsDropped());
+                playerRepository.save(player);
+            }
+            return battleResults;
         }
         return null;
     }
