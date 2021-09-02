@@ -90,4 +90,19 @@ public class Rewards {
                 return 39;
         }
     }
+
+
+    public Long validationGachaWeaponReward(int weaponLevel, String weaponType) {
+        switch (weaponLevel) {
+            case 0:
+                return basicWeaponReward(weaponType);
+            case 1:
+                return intermediateWeaponReward(weaponType);
+            case 2:
+                return advancedWeaponReward(weaponType);
+            case 3:
+                return heroicWeaponReward(weaponType);
+        }
+        return 7L;
+    }
 }

@@ -3,6 +3,7 @@ package com.estudo.rpg.Functions.Validations;
 import com.estudo.rpg.Entity.Player;
 import com.estudo.rpg.Entity.Weapon;
 import com.estudo.rpg.Functions.Loading;
+import com.estudo.rpg.Functions.Rewards;
 import com.estudo.rpg.Functions.Updates.UpdateEquipment;
 import com.estudo.rpg.Interactor;
 import com.estudo.rpg.Repository.WeaponRepository;

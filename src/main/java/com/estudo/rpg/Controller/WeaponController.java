@@ -1,6 +1,8 @@
 package com.estudo.rpg.Controller;
 
 import com.estudo.rpg.Entity.Weapon;
+import com.estudo.rpg.Functions.Rewards;
+import com.estudo.rpg.Functions.Validations.WeaponValidation;
 import com.estudo.rpg.Repository.WeaponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ public class WeaponController {
 
     @Autowired
     WeaponRepository weaponRepository;
+
+    Rewards rewards = new Rewards();
 
     @GetMapping
     public List<Weapon> getAllWeaponsOrFilterByRarity(String rarity){
@@ -48,6 +52,19 @@ public class WeaponController {
         URI uri = uriBuilder.path("/weapon/{id}").buildAndExpand(weapon.getId()).toUri();
         System.out.println("Arma adicionada com sucesso");
         return ResponseEntity.created(uri).body(weapon);
+    }
+
+    @PostMapping("/gacha/add/{weaponLevel}/{weaponType}")
+    public ResponseEntity<Weapon> insertGachaWeapon(@PathVariable int weaponLevel, @PathVariable String weaponType, UriComponentsBuilder uriBuilder){
+        Weapon weapon = new Weapon();
+        Weapon newWeapon = weapon.setNewWeapon(weaponRepository.getOne(rewards.validationGachaWeaponReward(weaponLevel, weaponType)));
+        newWeapon.setPrice(0.0);
+
+        weaponRepository.save(newWeapon);
+
+        URI uri = uriBuilder.path("/weapon/{id}").buildAndExpand(newWeapon.getId()).toUri();
+        System.out.println("Arma adicionada com sucesso");
+        return ResponseEntity.created(uri).body(newWeapon);
     }
 
     @PutMapping("/sell/{weaponId}/{value}")

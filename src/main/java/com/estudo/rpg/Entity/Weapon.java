@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.text.DecimalFormat;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -34,6 +35,20 @@ public class Weapon {
     private Long owner;
 
     public Weapon() {
+    }
+
+    public Weapon setNewWeapon(Weapon weapon){
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        Weapon newWeapon = new Weapon();
+        newWeapon.setName(weapon.getName());
+        newWeapon.setAttack((float) ((Math.random() * ((weapon.getAttack()*2 - weapon.getAttack()) + 1)) + weapon.getAttack()));
+        newWeapon.setRarity(weapon.getRarity());
+        newWeapon.setLevel(weapon.getLevel());
+        newWeapon.setType(weapon.getType());
+        newWeapon.setSelling(false);
+        newWeapon.setPrice(0.0);
+        return newWeapon;
     }
 
     public Long getId() {

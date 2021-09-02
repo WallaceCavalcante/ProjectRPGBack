@@ -86,7 +86,6 @@ public class PlayerController {
         player.setCoins(500.0);
         player.setInventory(new Inventory());
         player.getInventory().setWeapons(new ArrayList<>());
-        player.getInventory().addWeapon((weaponRepository.getOne(rewards.basicWeaponReward(player.getClasse()))));
         playerRepository.save(player);
         URI uri = uriBuilder.path("/player/{id}").buildAndExpand(player.getId()).toUri();
         System.out.println("Player adicionado com sucesso");
