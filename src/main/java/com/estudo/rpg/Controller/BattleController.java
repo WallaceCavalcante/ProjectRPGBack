@@ -46,10 +46,19 @@ public class BattleController {
 
     @GetMapping("/roll/pvp/{opponentId}/{playerId}")
     public BattleResults pvpRollBattle(@PathVariable Long opponentId, @PathVariable Long playerId) {
-        Optional<Player> opponent = playerRepository.findById(opponentId);
-        Optional<Player> player = playerRepository.findById(playerId);
-        if (player.isPresent() && opponent.isPresent()) {
-            return battlesValidation.validateKillOpponentRandomValue(player.get(), opponent.get());
+        Optional<Player> optionalOpponent = playerRepository.findById(opponentId);
+        Optional<Player> optionalPlayer = playerRepository.findById(playerId);
+        if (optionalPlayer.isPresent() && optionalOpponent.isPresent()) {
+            Player player = optionalPlayer.get();
+            Player opponent = optionalOpponent.get();
+            BattleResults battleResults = battlesValidation.validateKillOpponentRandomValue(player, opponent);
+            if(battleResults.isWinner()){
+                player.setXp(player.getXp() + opponent.getLevel() * 10);
+                battleResults.setCoinsDropped((int)((Math.random() * ((opponent.getLevel()*20 - opponent.getLevel()*5 + 1)) + opponent.getLevel()*5)));
+                player.setCoins(player.getCoins() + battleResults.getCoinsDropped());
+                playerRepository.save(player);
+            }
+            return  battleResults;
         }
         return null;
     }
@@ -73,6 +82,7 @@ public class BattleController {
             Monster monster = optionalMonster.get();
             BattleResults battleResults = battlesValidation.validateKillMonsterRandomValue(player, monster);
             if(battleResults.isWinner()){
+                player.setXp(player.getXp() + monster.getXpWhenKilled());
                 battleResults.setCoinsDropped((int)((Math.random() * ((monster.getXpWhenKilled()*10 - monster.getXpWhenKilled())*3 + 1)) + monster.getXpWhenKilled()*3));
                 player.setCoins(player.getCoins() + battleResults.getCoinsDropped());
                 playerRepository.save(player);
@@ -102,6 +112,7 @@ public class BattleController {
             Boss boss = optionalBoss.get();
             BattleResults battleResults = battlesValidation.validateKillBossRandomValue(player, boss);
             if(battleResults.isWinner()){
+                player.setXp(player.getXp() + boss.getXpWhenKilled());
                 battleResults.setCoinsDropped((int) ((Math.random() * ((boss.getXpWhenKilled()*2 - boss.getXpWhenKilled()) + 1)) + boss.getXpWhenKilled()));
                 player.setCoins(player.getCoins() + battleResults.getCoinsDropped());
                 playerRepository.save(player);

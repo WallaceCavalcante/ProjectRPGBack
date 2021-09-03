@@ -129,7 +129,9 @@ public class PlayerController {
     public ResponseEntity<Player> levelUp(@PathVariable Long id) {
         Optional<Player> optionalPlayer = playerRepository.findById(id);
         if (optionalPlayer.isPresent()) {
-            Player player = levelUp.levelUpPlayer(optionalPlayer.get());
+            Player player = optionalPlayer.get();
+            player.setXp(player.getXp() - player.getLevel() * 10);
+            player = levelUp.levelUpPlayer(player);
             playerRepository.save(player);
             System.out.println("Player: " + player.getNickname() + " Subiu de Nivel!");
             return ResponseEntity.ok(player);
